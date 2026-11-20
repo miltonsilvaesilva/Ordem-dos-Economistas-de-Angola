@@ -39,5 +39,5 @@ Cada `git push` para esse ramo atualiza o site automaticamente.
 
 ## Atualizar o progresso
 
-No `index.html`, alterar `const PROGRESSO = 18;` e as classes da lista de módulos
+No `index.html`, alterar `const PROGRESSO = 3;` e as classes da lista de módulos
 (`feito` = concluído, `curso` = em curso).

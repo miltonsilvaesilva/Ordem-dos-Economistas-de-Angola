@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>O.E.A. — Ordem dos Economistas de Angola</title>
   <meta name="description" content="O novo portal da Ordem dos Economistas de Angola está em construção. Em breve.">
-  <meta name="theme-color" content="#1F1A14">
+  <meta name="theme-color" content="#F9F7EE">
   <meta property="og:title" content="O.E.A. — Ordem dos Economistas de Angola">
   <meta property="og:description" content="O novo portal está em construção. Em breve.">
   <meta property="og:type" content="website">
@@ -14,22 +14,22 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Paleta institucional O.E.A. */
     :root {
       --ouro: #D4AF37;
+      --ouro-escuro: #A9831F;
       --ouro-claro: #F1D77A;
       --carvao: #1F1A14;
-      --carvao-fundo: #120F0B;
       --marfim: #F9F7EE;
       --vermelho: #B51E26;
       --verde: #0F5A3C;
 
-      --ink: var(--marfim);
-      --muted: rgba(249, 247, 238, .62);
-      --line: rgba(212, 175, 55, .14);
-      --glass: rgba(249, 247, 238, .04);
+      --ink: var(--carvao);
+      --muted: #6B6253;
+      --line: rgba(169, 131, 31, .16);
+      --card: rgba(255, 255, 255, .72);
 
       --titulo: "Cinzel", "Trajan Pro", serif;
       --sub: "Cormorant Garamond", Georgia, serif;
@@ -37,52 +37,47 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--carvao-fundo); }
-    body::before {
-      content: ""; position: fixed; inset: 0; z-index: -1;
-      background: radial-gradient(ellipse at 50% 30%, #2a221a 0%, var(--carvao) 45%, var(--carvao-fundo) 100%);
-    }
+    html { background: var(--marfim); }
     body {
-      background: var(--carvao-fundo);
-      min-height: 100%; position: relative; z-index: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 28%, #ffffff 0%, rgba(255,255,255,0) 70%),
+        linear-gradient(180deg, #FBFAF4 0%, var(--marfim) 55%, #F3EEDC 100%);
       color: var(--ink);
       font-family: var(--texto);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ---------- Camadas de fundo ---------- */
-    #net { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    /* ---------- Fundo: números a subir ---------- */
+    #numeros { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
     .grid {
-      position: fixed; left: -50%; right: -50%; bottom: -10vh; height: 65vh;
+      position: fixed; left: -50%; right: -50%; bottom: -10vh; height: 60vh;
       background-image:
         linear-gradient(var(--line) 1px, transparent 1px),
         linear-gradient(90deg, var(--line) 1px, transparent 1px);
       background-size: 64px 64px;
       transform: perspective(520px) rotateX(64deg);
       transform-origin: center top;
-      mask-image: linear-gradient(to bottom, transparent, #000 45%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%);
+      mask-image: linear-gradient(to bottom, transparent, #000 50%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 50%);
       animation: gridMove 7s linear infinite;
       z-index: 0; pointer-events: none;
     }
     @keyframes gridMove { to { background-position: 0 64px, 0 0; } }
 
-    .glow { position: fixed; border-radius: 50%; filter: blur(120px); z-index: 0; pointer-events: none; }
-    .glow.g1 { width: 520px; height: 520px; background: var(--vermelho); top: -220px; left: -180px; opacity: .28; animation: float 16s ease-in-out infinite; }
-    .glow.g2 { width: 480px; height: 480px; background: var(--ouro); bottom: -240px; right: -160px; opacity: .2; animation: float 20s ease-in-out infinite reverse; }
-    .glow.g3 { width: 360px; height: 360px; background: var(--verde); bottom: -160px; left: 10%; opacity: .25; animation: float 24s ease-in-out infinite; }
-    @keyframes float { 50% { transform: translate(60px, 40px) scale(1.08); } }
+    .glow { position: fixed; border-radius: 50%; filter: blur(110px); z-index: 0; pointer-events: none; }
+    .glow.g1 { width: 480px; height: 480px; background: var(--ouro-claro); top: -200px; right: -120px; opacity: .45; animation: float 18s ease-in-out infinite; }
+    .glow.g2 { width: 420px; height: 420px; background: var(--ouro); bottom: -220px; left: -140px; opacity: .22; animation: float 22s ease-in-out infinite reverse; }
+    @keyframes float { 50% { transform: translate(50px, 40px) scale(1.08); } }
 
-    /* Faixa nacional — canto superior esquerdo, como no master board */
-    .faixa {
-      position: fixed; top: 0; left: 0; width: 150px; height: 150px; z-index: 3; pointer-events: none; overflow: hidden;
-    }
-    .faixa i { position: absolute; width: 260px; height: 12px; left: -70px; transform: rotate(-45deg); transform-origin: center; }
+    /* Faixa nacional — canto superior esquerdo */
+    .faixa { position: fixed; top: 0; left: 0; width: 150px; height: 150px; z-index: 3; pointer-events: none; overflow: hidden; }
+    .faixa i { position: absolute; width: 260px; height: 12px; left: -70px; transform: rotate(-45deg); }
     .faixa i:nth-child(1) { top: 26px; background: var(--vermelho); }
     .faixa i:nth-child(2) { top: 42px; background: var(--ouro); }
-    .faixa i:nth-child(3) { top: 58px; background: #000; }
+    .faixa i:nth-child(3) { top: 58px; background: var(--carvao); }
 
     /* ---------- Layout ---------- */
     main {
@@ -96,136 +91,105 @@
 
     header {
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding-left: clamp(36px, 6vw, 72px);
-      padding-bottom: 20px;
+      padding-left: clamp(36px, 6vw, 72px); padding-bottom: 20px;
       border-bottom: 1px solid var(--line);
     }
     .marca { display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
-    .marca .sigla { font-family: var(--titulo); font-weight: 700; font-size: 30px; letter-spacing: .02em; color: var(--marfim); }
+    .marca .sigla { font-family: var(--titulo); font-weight: 700; font-size: 30px; letter-spacing: .02em; }
     .marca .div { width: 2px; height: 38px; background: var(--ouro); }
-    .marca .nome { font-family: var(--titulo); font-weight: 600; font-size: 13px; line-height: 1.25; letter-spacing: .08em; color: var(--marfim); }
+    .marca .nome { font-family: var(--titulo); font-weight: 600; font-size: 13px; line-height: 1.25; letter-spacing: .08em; }
 
     .estado {
-      font-family: var(--texto); font-weight: 600; font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+      font-weight: 700; font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px;
-      background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      color: var(--ouro); white-space: nowrap;
+      padding: 9px 16px; border: 1px solid rgba(169,131,31,.35); border-radius: 999px;
+      background: rgba(255,255,255,.7); color: var(--ouro-escuro); white-space: nowrap;
     }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 12px var(--ouro); animation: pulse 1.6s ease-in-out infinite; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--vermelho); box-shadow: 0 0 10px var(--vermelho); animation: pulse 1.6s ease-in-out infinite; }
     @keyframes pulse { 50% { opacity: .25; } }
 
     /* ---------- Hero ---------- */
     .hero {
       align-self: center; justify-self: center;
       width: 100%; max-width: 1080px; min-width: 0;
-      text-align: center;
-      padding: 48px 0 40px;
+      text-align: center; padding: 44px 0 40px;
     }
 
-    .emblema {
-      position: relative; width: clamp(150px, 20vw, 210px); aspect-ratio: 1; margin: 0 auto 34px;
-      display: grid; place-items: center;
-    }
-    .emblema img { width: 74%; height: auto; position: relative; z-index: 2; filter: drop-shadow(0 18px 40px rgba(212,175,55,.28)); animation: levitar 6s ease-in-out infinite; }
+    .emblema { position: relative; width: clamp(140px, 18vw, 190px); aspect-ratio: 1; margin: 0 auto 30px; display: grid; place-items: center; }
+    .emblema img { width: 74%; height: auto; position: relative; z-index: 2; filter: drop-shadow(0 16px 30px rgba(31,26,20,.28)); animation: levitar 6s ease-in-out infinite; }
     @keyframes levitar { 50% { transform: translateY(-6px); } }
-    .orbita { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(212,175,55,.35); }
+    .orbita { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(169,131,31,.45); }
     .orbita.o1 { animation: girar 18s linear infinite; }
-    .orbita.o2 { inset: -14%; border-style: dashed; border-color: rgba(212,175,55,.18); animation: girar 32s linear infinite reverse; }
-    .orbita::after {
-      content: ""; position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
-      background: var(--ouro); box-shadow: 0 0 14px var(--ouro);
-    }
-    .orbita.o2::after { background: var(--vermelho); box-shadow: 0 0 14px var(--vermelho); top: auto; bottom: -4px; }
+    .orbita.o2 { inset: -14%; border-style: dashed; border-color: rgba(169,131,31,.3); animation: girar 32s linear infinite reverse; }
+    .orbita::after { content: ""; position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 12px var(--ouro); }
+    .orbita.o2::after { background: var(--vermelho); box-shadow: 0 0 12px var(--vermelho); top: auto; bottom: -4px; }
     @keyframes girar { to { transform: rotate(360deg); } }
 
-    .kicker {
-      font-family: var(--texto); font-weight: 600; font-size: 12px; color: var(--ouro);
-      letter-spacing: .38em; text-transform: uppercase; margin-bottom: 22px; min-height: 1.4em;
-    }
+    .kicker { font-weight: 700; font-size: 12px; color: var(--ouro-escuro); letter-spacing: .38em; text-transform: uppercase; margin-bottom: 20px; min-height: 1.4em; }
     .kicker .caret { display: inline-block; width: 2px; height: 1em; background: var(--ouro); vertical-align: -2px; margin-left: 4px; animation: pulse 1s steps(1) infinite; }
 
-    h1 {
-      font-family: var(--titulo); font-weight: 600;
-      font-size: clamp(28px, 5.4vw, 70px);
-      line-height: 1.12; letter-spacing: .01em;
-    }
+    h1 { font-family: var(--titulo); font-weight: 600; font-size: clamp(28px, 5.4vw, 70px); line-height: 1.12; letter-spacing: .01em; color: var(--carvao); }
     h1 .line { display: block; }
     h1 .accent {
-      background: linear-gradient(100deg, #b8892a, var(--ouro) 30%, var(--ouro-claro) 50%, var(--ouro) 70%, #b8892a);
+      background: linear-gradient(100deg, #8a6a1e, var(--ouro-escuro) 25%, var(--ouro) 50%, var(--ouro-escuro) 75%, #8a6a1e);
       background-size: 220% 100%;
       -webkit-background-clip: text; background-clip: text; color: transparent;
       animation: brilho 7s ease-in-out infinite;
     }
     @keyframes brilho { 50% { background-position: 100% 0; } }
 
-    .traco { width: min(360px, 60%); height: 2px; margin: 26px auto 0; background: linear-gradient(90deg, transparent, var(--ouro), transparent); }
+    .traco { width: min(360px, 60%); height: 2px; margin: 24px auto 0; background: linear-gradient(90deg, transparent, var(--ouro), transparent); }
 
-    .lead {
-      max-width: 640px; margin: 22px auto 0;
-      font-family: var(--sub); font-weight: 500; font-size: clamp(19px, 2.3vw, 23px); line-height: 1.5;
-      color: var(--muted);
-    }
+    .lead { max-width: 640px; margin: 20px auto 0; font-family: var(--sub); font-weight: 500; font-size: clamp(19px, 2.3vw, 23px); line-height: 1.5; color: var(--muted); }
 
-    /* ---------- Painel de progresso ---------- */
+    /* ---------- Painel: gráfico animado + progresso ---------- */
     .painel {
-      margin: 44px auto 0; max-width: 680px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(249,247,238,.06), rgba(249,247,238,.015));
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      padding: 22px 24px; text-align: left;
-      position: relative;
+      margin: 40px auto 0; max-width: 720px;
+      border-radius: 20px; background: var(--card);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(169,131,31,.28);
+      box-shadow: 0 24px 60px -24px rgba(31,26,20,.25);
+      padding: 22px 24px 24px; text-align: left; overflow: hidden;
     }
-    .painel::before {
-      content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-      background: linear-gradient(120deg, rgba(212,175,55,.75), rgba(212,175,55,.08) 40%, rgba(212,175,55,.08) 60%, rgba(181,30,38,.7));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      pointer-events: none;
-    }
+
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    .kpi small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .kpi b { display: block; margin-top: 4px; font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: var(--carvao); font-variant-numeric: tabular-nums; }
+    .kpi b em { font-style: normal; font-size: .6em; color: var(--verde); margin-left: 4px; }
+
+    .grafico { width: 100%; height: 150px; display: block; }
+    .grafico .area { fill: url(#gArea); }
+    .grafico .linha { fill: none; stroke: var(--ouro-escuro); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    .grafico .barra-g { fill: var(--ouro); opacity: .22; }
+    .grafico .ponta { fill: var(--vermelho); }
+
+    .sep { height: 1px; background: var(--line); margin: 18px 0 16px; }
+
     .painel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-    .painel-head > span { font-weight: 600; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
-    .painel-head b { font-family: var(--texto); font-weight: 600; font-size: 24px; line-height: 1; font-variant-numeric: lining-nums; color: var(--ouro); }
+    .painel-head > span { font-weight: 700; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+    .painel-head b { font-weight: 700; font-size: 26px; line-height: 1; color: var(--vermelho); font-variant-numeric: tabular-nums; }
 
-    .barra { height: 6px; border-radius: 99px; background: rgba(249,247,238,.08); margin: 14px 0 20px; overflow: hidden; }
-    .barra i {
-      display: block; height: 100%; width: 0; border-radius: inherit;
-      background: linear-gradient(90deg, var(--vermelho), var(--ouro));
-      box-shadow: 0 0 18px rgba(212,175,55,.6);
-      transition: width 2.4s cubic-bezier(.2,.8,.2,1);
-      position: relative; overflow: hidden;
-    }
-    .barra i::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
-      animation: sweep 2.2s linear infinite;
-    }
-    @keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+    .barra { height: 8px; border-radius: 99px; background: rgba(31,26,20,.08); margin: 12px 0 18px; overflow: hidden; }
+    .barra i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--vermelho), var(--ouro)); box-shadow: 0 0 12px rgba(212,175,55,.6); transition: width 2s cubic-bezier(.2,.8,.2,1); }
 
-    .modulos { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; font-size: 15px; }
+    .modulos { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px 20px; font-size: 15px; }
     .modulos li { display: flex; align-items: center; gap: 10px; color: var(--muted); }
-    .modulos li::before { content: ""; width: 7px; height: 7px; transform: rotate(45deg); flex: none; border: 1px solid rgba(249,247,238,.4); }
-    .modulos li.feito { color: var(--ink); }
-    .modulos li.feito::before { background: var(--ouro); border-color: var(--ouro); box-shadow: 0 0 8px var(--ouro); }
+    .modulos li::before { content: ""; width: 7px; height: 7px; transform: rotate(45deg); flex: none; border: 1px solid rgba(31,26,20,.35); }
+    .modulos li.feito { color: var(--ink); font-weight: 600; }
+    .modulos li.feito::before { background: var(--ouro); border-color: var(--ouro); }
+    .modulos li.curso { color: var(--ink); }
     .modulos li.curso::before { background: var(--vermelho); border-color: var(--vermelho); animation: pulse 1.2s infinite; }
 
     /* ---------- Valores ---------- */
-    .valores {
-      margin-top: 40px; overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-    }
-    .valores-track { display: inline-flex; gap: 44px; white-space: nowrap; animation: marquee 40s linear infinite; font-family: var(--titulo); font-weight: 500; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: rgba(249,247,238,.5); }
+    .valores { margin-top: 36px; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+    .valores-track { display: inline-flex; gap: 44px; white-space: nowrap; animation: marquee 40s linear infinite; font-family: var(--titulo); font-weight: 600; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: rgba(31,26,20,.55); }
     .valores-track span::before { content: "★"; color: var(--ouro); margin-right: 16px; font-size: 10px; vertical-align: 2px; }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
-    /* ---------- Rodapé com onda dourada ---------- */
-    footer { position: relative; margin: 0 calc(-1 * clamp(16px, 4vw, 56px)); padding: 46px clamp(16px, 4vw, 56px) 22px; }
+    /* ---------- Rodapé (faixa carvão, como no master board) ---------- */
+    footer { position: relative; margin: 0 calc(-1 * clamp(16px, 4vw, 56px)); padding: 58px clamp(16px, 4vw, 56px) 22px; background: linear-gradient(180deg, transparent 0 44px, var(--carvao) 44px); }
     .onda { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 46px; display: block; }
-    .rodape {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 20px;
-      font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
-    }
+    .rodape { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 20px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgba(249,247,238,.7); }
     .rodape .lema { font-family: var(--titulo); color: var(--ouro); letter-spacing: .3em; }
 
     /* ---------- Entrada ---------- */
@@ -236,9 +200,11 @@
     @media (max-width: 640px) {
       header { padding-left: 64px; }
       .marca .sigla { font-size: 26px; }
-      .marca .nome { display: none; }
-      .marca .div { display: none; }
+      .marca .nome, .marca .div { display: none; }
       .modulos { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .kpi small { font-size: 9px; letter-spacing: .12em; }
+      .grafico { height: 120px; }
       .rodape { justify-content: center; text-align: center; }
       .faixa { width: 80px; height: 80px; }
       .faixa i { height: 8px; }
@@ -252,11 +218,10 @@
   </style>
 </head>
 <body>
-  <canvas id="net" aria-hidden="true"></canvas>
+  <canvas id="numeros" aria-hidden="true"></canvas>
   <div class="grid" aria-hidden="true"></div>
   <div class="glow g1" aria-hidden="true"></div>
   <div class="glow g2" aria-hidden="true"></div>
-  <div class="glow g3" aria-hidden="true"></div>
   <div class="faixa" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <main>
@@ -289,12 +254,34 @@
         mais moderna, mais próxima e preparada para o futuro. Volte em breve.
       </p>
 
-      <div class="painel reveal d5" role="group" aria-label="Estado da construção">
+      <div class="painel reveal d5">
+        <!-- Indicadores ilustrativos (animação decorativa) -->
+        <div class="kpis" aria-hidden="true">
+          <div class="kpi"><small>Crescimento</small><b><span data-alvo="128.4" data-casas="1">0</span><em>▲</em></b></div>
+          <div class="kpi"><small>Conhecimento</small><b><span data-alvo="2470" data-casas="0">0</span><em>▲</em></b></div>
+          <div class="kpi"><small>Inovação</small><b><span data-alvo="96.2" data-casas="1">0</span><em>▲</em></b></div>
+        </div>
+
+        <svg class="grafico" viewBox="0 0 600 150" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#D4AF37" stop-opacity=".45"/>
+              <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g id="barras"></g>
+          <path id="area" class="area" d=""/>
+          <path id="linha" class="linha" d=""/>
+          <circle id="ponta" class="ponta" r="5" cx="-10" cy="-10"/>
+        </svg>
+
+        <div class="sep"></div>
+
         <div class="painel-head">
           <span>Construção da plataforma</span>
           <b><span id="pct">0</span>%</b>
         </div>
-        <div class="barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra"><i></i></div>
+        <div class="barra" role="progressbar" aria-label="Construção da plataforma" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra"><i></i></div>
         <ul class="modulos">
           <li class="feito">Identidade de marca</li>
           <li class="curso">Portal institucional</li>
@@ -321,9 +308,10 @@
             <stop offset=".65" stop-color="#D4AF37"/><stop offset="1" stop-color="#8a6a1e"/>
           </linearGradient>
         </defs>
-        <path d="M0 30 C 360 6, 720 46, 1080 22 S 1440 18, 1440 18" fill="none" stroke="url(#ouro)" stroke-width="2"/>
-        <path d="M0 38 C 380 18, 760 50, 1120 30 S 1440 28, 1440 28" fill="none" stroke="#B51E26" stroke-opacity=".6" stroke-width="1"/>
-        <path d="M0 44 C 400 28, 800 54, 1160 38 S 1440 36, 1440 36" fill="none" stroke="#0F5A3C" stroke-opacity=".7" stroke-width="1"/>
+        <path d="M0 30 C 360 6, 720 46, 1080 22 S 1440 18, 1440 18 L1440 46 L0 46 Z" fill="#1F1A14"/>
+        <path d="M0 30 C 360 6, 720 46, 1080 22 S 1440 18, 1440 18" fill="none" stroke="url(#ouro)" stroke-width="3"/>
+        <path d="M0 36 C 380 14, 760 50, 1120 28 S 1440 25, 1440 25" fill="none" stroke="#B51E26" stroke-width="1.5"/>
+        <path d="M0 41 C 400 22, 800 54, 1160 34 S 1440 32, 1440 32" fill="none" stroke="#0F5A3C" stroke-width="1.5"/>
       </svg>
       <div class="rodape">
         <span>© <span id="ano">2026</span> Ordem dos Economistas de Angola</span>
@@ -336,28 +324,84 @@
   <script>
     (function () {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const ease = k => 1 - Math.pow(1 - k, 3);
+      function contar(el, alvo, casas, dur, atraso) {
+        const fmt = new Intl.NumberFormat('pt-AO', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+        if (reduce) { el.textContent = fmt.format(alvo); return; }
+        setTimeout(() => {
+          const t0 = performance.now();
+          (function step(t) {
+            const k = Math.min(1, (t - t0) / dur);
+            el.textContent = fmt.format(alvo * ease(k));
+            if (k < 1) requestAnimationFrame(step);
+          })(t0);
+        }, atraso);
+      }
 
       /* Ano + relógio de Luanda */
       document.getElementById('ano').textContent = new Date().getFullYear();
       const relogio = document.getElementById('relogio');
-      const fmt = new Intl.DateTimeFormat('pt-AO', { timeZone: 'Africa/Luanda', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-      const tick = () => { relogio.textContent = 'Luanda ' + fmt.format(new Date()); };
+      const fmtH = new Intl.DateTimeFormat('pt-AO', { timeZone: 'Africa/Luanda', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      const tick = () => { relogio.textContent = 'Luanda ' + fmtH.format(new Date()); };
       tick(); setInterval(tick, 1000);
 
-      /* Progresso — ajustar este valor à medida que o projeto avança */
-      const PROGRESSO = 18;
-      const barra = document.getElementById('barra'), pct = document.getElementById('pct');
+      /* Progresso real da construção — atualizar este valor */
+      const PROGRESSO = 3;
+      const barra = document.getElementById('barra');
       setTimeout(() => {
         barra.querySelector('i').style.width = PROGRESSO + '%';
         barra.setAttribute('aria-valuenow', PROGRESSO);
-        if (reduce) { pct.textContent = PROGRESSO; return; }
-        const t0 = performance.now(), dur = 2400;
-        (function step(t) {
-          const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
-          pct.textContent = Math.round(PROGRESSO * e);
-          if (k < 1) requestAnimationFrame(step);
-        })(t0);
       }, 900);
+      contar(document.getElementById('pct'), PROGRESSO, 0, 2000, 900);
+
+      /* Indicadores a subir */
+      document.querySelectorAll('[data-alvo]').forEach((el, i) =>
+        contar(el, parseFloat(el.dataset.alvo), parseInt(el.dataset.casas, 10), 2600, 700 + i * 150));
+
+      /* Gráfico de crescimento animado */
+      const VW = 600, VH = 150, N = 24, BASE = VH - 8;
+      const dados = Array.from({ length: N }, (_, i) => {
+        const v = 0.12 + 0.78 * Math.pow(i / (N - 1), 1.35);
+        return Math.min(0.95, v + Math.sin(i * 1.7) * 0.05);
+      });
+      const xs = i => 10 + i * (VW - 20) / (N - 1);
+      const ys = v => BASE - v * (VH - 22);
+      const gB = document.getElementById('barras'), linha = document.getElementById('linha'),
+            area = document.getElementById('area'), ponta = document.getElementById('ponta');
+      const NS = 'http://www.w3.org/2000/svg';
+      const bw = (VW - 20) / N * 0.55;
+      const barras = dados.map((v, i) => {
+        const r = document.createElementNS(NS, 'rect');
+        r.setAttribute('class', 'barra-g'); r.setAttribute('x', xs(i) - bw / 2); r.setAttribute('width', bw);
+        r.setAttribute('rx', 2); gB.appendChild(r); return r;
+      });
+
+      function desenhar(k) {
+        const pts = [];
+        dados.forEach((v, i) => {
+          const local = Math.max(0, Math.min(1, k * 1.6 - i / N * 0.6));
+          const h = v * ease(local);
+          barras[i].setAttribute('y', ys(h)); barras[i].setAttribute('height', Math.max(0, BASE - ys(h)));
+          pts.push([xs(i), ys(v * ease(Math.min(1, k * 1.2)))]);
+        });
+        const m = Math.max(2, Math.round(k * (N - 1)) + 1), vis = pts.slice(0, m);
+        const d = vis.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+        linha.setAttribute('d', d);
+        const last = vis[vis.length - 1];
+        area.setAttribute('d', d + ' L' + last[0].toFixed(1) + ' ' + BASE + ' L' + vis[0][0].toFixed(1) + ' ' + BASE + ' Z');
+        ponta.setAttribute('cx', last[0]); ponta.setAttribute('cy', last[1]);
+      }
+
+      if (reduce) desenhar(1);
+      else {
+        // cresce, mantém e recomeça — em ciclo
+        const CICLO = 9000, CRESCE = 3200, t0 = performance.now() + 700;
+        (function loop(t) {
+          const e = Math.max(0, t - t0) % CICLO;
+          desenhar(Math.min(1, e / CRESCE));
+          requestAnimationFrame(loop);
+        })(performance.now());
+      }
 
       /* Texto dinâmico */
       if (!reduce) {
@@ -374,57 +418,56 @@
         }, 2600);
       }
 
-      /* Rede de partículas douradas */
-      const c = document.getElementById('net'), ctx = c.getContext('2d');
-      let W, H, pts = [];
+      /* Fundo: números e indicadores a subir */
+      const c = document.getElementById('numeros'), ctx = c.getContext('2d');
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const mouse = { x: -9999, y: -9999 };
+      const simbolos = ['%', '▲', '+', 'Kz', '↗'];
+      let W, H, itens = [];
+
+      function novo(inicio) {
+        const tipo = Math.random();
+        let txt;
+        if (tipo < .45) txt = (Math.random() * 99 + 1).toFixed(1).replace('.', ',') + '%';
+        else if (tipo < .7) txt = '+' + Math.floor(Math.random() * 9000 + 100).toLocaleString('pt-AO');
+        else if (tipo < .85) txt = simbolos[Math.floor(Math.random() * simbolos.length)];
+        else txt = String(Math.floor(Math.random() * 10));
+        const r = Math.random();
+        return {
+          txt, tam: 11 + Math.random() * 18,
+          x: Math.random() * W,
+          y: inicio ? Math.random() * H : H + 30,
+          v: .25 + Math.random() * .55,
+          a: .1 + Math.random() * .22,
+          cor: r < .18 ? '181,30,38' : (r < .3 ? '15,90,60' : '169,131,31')
+        };
+      }
 
       function resize() {
         W = c.clientWidth; H = c.clientHeight;
         c.width = W * dpr; c.height = H * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        const n = Math.round(Math.min(100, (W * H) / 15000));
-        pts = Array.from({ length: n }, () => ({
-          x: Math.random() * W, y: Math.random() * H,
-          vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
-          r: Math.random() * 1.6 + .4,
-          ouro: Math.random() < .35
-        }));
+        const n = Math.round(Math.min(70, (W * H) / 22000));
+        itens = Array.from({ length: n }, () => novo(true));
       }
 
       function draw() {
         ctx.clearRect(0, 0, W, H);
-        const max = 130;
-        for (let a = 0; a < pts.length; a++) {
-          const p = pts[a];
-          if (!reduce) {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0 || p.x > W) p.vx *= -1;
-            if (p.y < 0 || p.y > H) p.vy *= -1;
-          }
-          for (let b = a + 1; b < pts.length; b++) {
-            const q = pts[b], d = Math.hypot(p.x - q.x, p.y - q.y);
-            if (d < max) {
-              ctx.strokeStyle = 'rgba(212,175,55,' + (0.14 * (1 - d / max)) + ')';
-              ctx.lineWidth = 1;
-              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-            }
-          }
-          const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-          if (md < 180) {
-            ctx.strokeStyle = 'rgba(241,215,122,' + (0.4 * (1 - md / 180)) + ')';
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
-          }
-          ctx.fillStyle = p.ouro ? '#D4AF37' : 'rgba(249,247,238,.55)';
-          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+        ctx.textAlign = 'center';
+        for (let i = 0; i < itens.length; i++) {
+          const p = itens[i];
+          if (!reduce) p.y -= p.v;
+          if (p.y < -30) { itens[i] = novo(false); continue; }
+          const fade = Math.min(1, p.y / (H * .25)) * Math.min(1, (H - p.y + 30) / 120);
+          ctx.globalAlpha = Math.max(0, p.a * fade);
+          ctx.fillStyle = 'rgb(' + p.cor + ')';
+          ctx.font = '600 ' + p.tam.toFixed(1) + 'px "Source Sans 3", system-ui, sans-serif';
+          ctx.fillText(p.txt, p.x, p.y);
         }
+        ctx.globalAlpha = 1;
         if (!reduce) requestAnimationFrame(draw);
       }
 
       window.addEventListener('resize', () => { resize(); if (reduce) draw(); });
-      window.addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-      window.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
       resize(); draw();
     })();
   </script>
