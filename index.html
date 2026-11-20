@@ -3,71 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ordem dos Economistas de Angola — Em construção</title>
+  <title>O.E.A. — Ordem dos Economistas de Angola</title>
   <meta name="description" content="O novo portal da Ordem dos Economistas de Angola está em construção. Em breve.">
-  <meta name="theme-color" content="#05060a">
-  <meta property="og:title" content="Ordem dos Economistas de Angola">
+  <meta name="theme-color" content="#1F1A14">
+  <meta property="og:title" content="O.E.A. — Ordem dos Economistas de Angola">
   <meta property="og:description" content="O novo portal está em construção. Em breve.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060a'/%3E%3Cpath d='M14 44 L26 30 L34 37 L50 18' stroke='%23f5c542' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='18' r='4' fill='%23e3262f'/%3E%3C/svg%3E">
+  <meta property="og:image" content="assets/img/icone-512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* Paleta institucional O.E.A. */
     :root {
-      --bg: #05060a;
-      --bg-2: #0b0d14;
-      --ink: #eef0f6;
-      --muted: #8a90a2;
-      --line: rgba(255, 255, 255, 0.08);
-      --gold: #f5c542;
-      --red: #e3262f;
-      --glass: rgba(255, 255, 255, 0.035);
-      --mono: "JetBrains Mono", ui-monospace, monospace;
-      --sans: "Space Grotesk", system-ui, sans-serif;
+      --ouro: #D4AF37;
+      --ouro-claro: #F1D77A;
+      --carvao: #1F1A14;
+      --carvao-fundo: #120F0B;
+      --marfim: #F9F7EE;
+      --vermelho: #B51E26;
+      --verde: #0F5A3C;
+
+      --ink: var(--marfim);
+      --muted: rgba(249, 247, 238, .62);
+      --line: rgba(212, 175, 55, .14);
+      --glass: rgba(249, 247, 238, .04);
+
+      --titulo: "Cinzel", "Trajan Pro", serif;
+      --sub: "Cormorant Garamond", Georgia, serif;
+      --texto: "Source Sans 3", "Lato", system-ui, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    html { background: var(--carvao-fundo); }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1;
+      background: radial-gradient(ellipse at 50% 30%, #2a221a 0%, var(--carvao) 45%, var(--carvao-fundo) 100%);
+    }
     body {
-      background: var(--bg);
+      background: var(--carvao-fundo);
+      min-height: 100%; position: relative; z-index: 0;
       color: var(--ink);
-      font-family: var(--sans);
+      font-family: var(--texto);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ---------- Background layers ---------- */
+    /* ---------- Camadas de fundo ---------- */
     #net { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
 
     .grid {
-      position: fixed; inset: -50% -50% 0 -50%;
-      height: 70vh; top: auto; bottom: -10vh;
+      position: fixed; left: -50%; right: -50%; bottom: -10vh; height: 65vh;
       background-image:
         linear-gradient(var(--line) 1px, transparent 1px),
         linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 60px 60px;
-      transform: perspective(500px) rotateX(62deg);
+      background-size: 64px 64px;
+      transform: perspective(520px) rotateX(64deg);
       transform-origin: center top;
-      mask-image: linear-gradient(to bottom, transparent, #000 40%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 40%);
-      animation: gridMove 6s linear infinite;
+      mask-image: linear-gradient(to bottom, transparent, #000 45%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%);
+      animation: gridMove 7s linear infinite;
       z-index: 0; pointer-events: none;
     }
-    @keyframes gridMove { to { background-position: 0 60px, 0 0; } }
+    @keyframes gridMove { to { background-position: 0 64px, 0 0; } }
 
-    .glow {
-      position: fixed; border-radius: 50%; filter: blur(110px);
-      opacity: .35; z-index: 0; pointer-events: none;
-    }
-    .glow.g1 { width: 520px; height: 520px; background: var(--red); top: -180px; left: -160px; animation: float 14s ease-in-out infinite; }
-    .glow.g2 { width: 460px; height: 460px; background: var(--gold); bottom: -200px; right: -140px; opacity: .22; animation: float 18s ease-in-out infinite reverse; }
+    .glow { position: fixed; border-radius: 50%; filter: blur(120px); z-index: 0; pointer-events: none; }
+    .glow.g1 { width: 520px; height: 520px; background: var(--vermelho); top: -220px; left: -180px; opacity: .28; animation: float 16s ease-in-out infinite; }
+    .glow.g2 { width: 480px; height: 480px; background: var(--ouro); bottom: -240px; right: -160px; opacity: .2; animation: float 20s ease-in-out infinite reverse; }
+    .glow.g3 { width: 360px; height: 360px; background: var(--verde); bottom: -160px; left: 10%; opacity: .25; animation: float 24s ease-in-out infinite; }
     @keyframes float { 50% { transform: translate(60px, 40px) scale(1.08); } }
 
-    .scan {
-      position: fixed; inset: 0; pointer-events: none; z-index: 1;
-      background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,.012) 3px 4px);
+    /* Faixa nacional — canto superior esquerdo, como no master board */
+    .faixa {
+      position: fixed; top: 0; left: 0; width: 150px; height: 150px; z-index: 3; pointer-events: none; overflow: hidden;
     }
+    .faixa i { position: absolute; width: 260px; height: 12px; left: -70px; transform: rotate(-45deg); transform-origin: center; }
+    .faixa i:nth-child(1) { top: 26px; background: var(--vermelho); }
+    .faixa i:nth-child(2) { top: 42px; background: var(--ouro); }
+    .faixa i:nth-child(3) { top: 58px; background: #000; }
 
     /* ---------- Layout ---------- */
     main {
@@ -76,128 +91,158 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       grid-template-columns: minmax(0, 1fr);
-      padding: 28px clamp(16px, 4vw, 56px);
+      padding: 28px clamp(16px, 4vw, 56px) 0;
     }
 
-    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-    .brand svg { width: 40px; height: 40px; flex: none; }
-    .brand span { font-weight: 700; letter-spacing: .02em; font-size: 15px; line-height: 1.15; }
-    .brand small { display: block; font-family: var(--mono); font-weight: 400; color: var(--muted); font-size: 11px; letter-spacing: .12em; }
+    header {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding-left: clamp(36px, 6vw, 72px);
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    .marca { display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
+    .marca .sigla { font-family: var(--titulo); font-weight: 700; font-size: 30px; letter-spacing: .02em; color: var(--marfim); }
+    .marca .div { width: 2px; height: 38px; background: var(--ouro); }
+    .marca .nome { font-family: var(--titulo); font-weight: 600; font-size: 13px; line-height: 1.25; letter-spacing: .08em; color: var(--marfim); }
 
-    .status {
-      font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    .estado {
+      font-family: var(--texto); font-weight: 600; font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
-      background: var(--glass); backdrop-filter: blur(10px);
-      white-space: nowrap;
+      padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      color: var(--ouro); white-space: nowrap;
     }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); animation: pulse 1.6s ease-in-out infinite; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 12px var(--ouro); animation: pulse 1.6s ease-in-out infinite; }
     @keyframes pulse { 50% { opacity: .25; } }
 
+    /* ---------- Hero ---------- */
     .hero {
       align-self: center; justify-self: center;
-      width: 100%; max-width: 1040px; min-width: 0;
+      width: 100%; max-width: 1080px; min-width: 0;
       text-align: center;
-      padding: 56px 0;
+      padding: 48px 0 40px;
     }
+
+    .emblema {
+      position: relative; width: clamp(150px, 20vw, 210px); aspect-ratio: 1; margin: 0 auto 34px;
+      display: grid; place-items: center;
+    }
+    .emblema img { width: 74%; height: auto; position: relative; z-index: 2; filter: drop-shadow(0 18px 40px rgba(212,175,55,.28)); animation: levitar 6s ease-in-out infinite; }
+    @keyframes levitar { 50% { transform: translateY(-6px); } }
+    .orbita { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(212,175,55,.35); }
+    .orbita.o1 { animation: girar 18s linear infinite; }
+    .orbita.o2 { inset: -14%; border-style: dashed; border-color: rgba(212,175,55,.18); animation: girar 32s linear infinite reverse; }
+    .orbita::after {
+      content: ""; position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+      background: var(--ouro); box-shadow: 0 0 14px var(--ouro);
+    }
+    .orbita.o2::after { background: var(--vermelho); box-shadow: 0 0 14px var(--vermelho); top: auto; bottom: -4px; }
+    @keyframes girar { to { transform: rotate(360deg); } }
 
     .kicker {
-      font-family: var(--mono); font-size: 13px; color: var(--gold);
-      letter-spacing: .3em; text-transform: uppercase; margin-bottom: 28px;
-      min-height: 1.4em;
+      font-family: var(--texto); font-weight: 600; font-size: 12px; color: var(--ouro);
+      letter-spacing: .38em; text-transform: uppercase; margin-bottom: 22px; min-height: 1.4em;
     }
-    .kicker .caret { display: inline-block; width: .6em; background: var(--gold); animation: pulse 1s steps(1) infinite; margin-left: 2px; }
+    .kicker .caret { display: inline-block; width: 2px; height: 1em; background: var(--ouro); vertical-align: -2px; margin-left: 4px; animation: pulse 1s steps(1) infinite; }
 
     h1 {
-      font-size: clamp(38px, 7vw, 92px);
-      line-height: .98; letter-spacing: -.035em; font-weight: 700;
+      font-family: var(--titulo); font-weight: 600;
+      font-size: clamp(28px, 5.4vw, 70px);
+      line-height: 1.12; letter-spacing: .01em;
     }
     h1 .line { display: block; }
     h1 .accent {
-      background: linear-gradient(90deg, var(--red), var(--gold) 55%, #fff3c4);
+      background: linear-gradient(100deg, #b8892a, var(--ouro) 30%, var(--ouro-claro) 50%, var(--ouro) 70%, #b8892a);
+      background-size: 220% 100%;
       -webkit-background-clip: text; background-clip: text; color: transparent;
-      background-size: 200% 100%;
-      animation: shimmer 6s ease-in-out infinite;
+      animation: brilho 7s ease-in-out infinite;
     }
-    @keyframes shimmer { 50% { background-position: 100% 0; } }
+    @keyframes brilho { 50% { background-position: 100% 0; } }
+
+    .traco { width: min(360px, 60%); height: 2px; margin: 26px auto 0; background: linear-gradient(90deg, transparent, var(--ouro), transparent); }
 
     .lead {
-      max-width: 620px; margin: 28px auto 0;
-      color: var(--muted); font-size: clamp(16px, 2vw, 19px); line-height: 1.6;
+      max-width: 640px; margin: 22px auto 0;
+      font-family: var(--sub); font-weight: 500; font-size: clamp(19px, 2.3vw, 23px); line-height: 1.5;
+      color: var(--muted);
     }
 
-    /* ---------- Progress panel ---------- */
-    .panel {
-      margin: 52px auto 0; max-width: 680px;
-      border: 1px solid var(--line); border-radius: 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+    /* ---------- Painel de progresso ---------- */
+    .painel {
+      margin: 44px auto 0; max-width: 680px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(249,247,238,.06), rgba(249,247,238,.015));
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       padding: 22px 24px; text-align: left;
-      position: relative; overflow: hidden;
+      position: relative;
     }
-    .panel::before {
+    .painel::before {
       content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-      background: linear-gradient(120deg, rgba(227,38,47,.6), transparent 35%, transparent 65%, rgba(245,197,66,.6));
+      background: linear-gradient(120deg, rgba(212,175,55,.75), rgba(212,175,55,.08) 40%, rgba(212,175,55,.08) 60%, rgba(181,30,38,.7));
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude;
       pointer-events: none;
     }
-    .panel-head { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
-    .panel-head b { color: var(--ink); font-weight: 500; font-size: 22px; letter-spacing: 0; }
+    .painel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .painel-head > span { font-weight: 600; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
+    .painel-head b { font-family: var(--texto); font-weight: 600; font-size: 24px; line-height: 1; font-variant-numeric: lining-nums; color: var(--ouro); }
 
-    .bar { height: 6px; border-radius: 99px; background: rgba(255,255,255,.07); margin: 14px 0 20px; overflow: hidden; }
-    .bar i {
+    .barra { height: 6px; border-radius: 99px; background: rgba(249,247,238,.08); margin: 14px 0 20px; overflow: hidden; }
+    .barra i {
       display: block; height: 100%; width: 0; border-radius: inherit;
-      background: linear-gradient(90deg, var(--red), var(--gold));
-      box-shadow: 0 0 18px rgba(245,197,66,.6);
+      background: linear-gradient(90deg, var(--vermelho), var(--ouro));
+      box-shadow: 0 0 18px rgba(212,175,55,.6);
       transition: width 2.4s cubic-bezier(.2,.8,.2,1);
-      position: relative;
+      position: relative; overflow: hidden;
     }
-    .bar i::after {
+    .barra i::after {
       content: ""; position: absolute; inset: 0;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
       animation: sweep 2.2s linear infinite;
     }
     @keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 
-    .modules { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; font-size: 14px; }
-    .modules li { display: flex; align-items: center; gap: 10px; color: var(--muted); }
-    .modules li::before {
-      content: ""; width: 7px; height: 7px; border-radius: 2px; flex: none;
-      border: 1px solid var(--muted);
-    }
-    .modules li.done { color: var(--ink); }
-    .modules li.done::before { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 8px var(--gold); }
-    .modules li.wip::before { border-color: var(--red); background: var(--red); animation: pulse 1.2s infinite; }
+    .modulos { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px; font-size: 15px; }
+    .modulos li { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+    .modulos li::before { content: ""; width: 7px; height: 7px; transform: rotate(45deg); flex: none; border: 1px solid rgba(249,247,238,.4); }
+    .modulos li.feito { color: var(--ink); }
+    .modulos li.feito::before { background: var(--ouro); border-color: var(--ouro); box-shadow: 0 0 8px var(--ouro); }
+    .modulos li.curso::before { background: var(--vermelho); border-color: var(--vermelho); animation: pulse 1.2s infinite; }
 
-    /* ---------- Ticker ---------- */
-    .ticker {
+    /* ---------- Valores ---------- */
+    .valores {
       margin-top: 40px; overflow: hidden;
       mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
     }
-    .ticker-track { display: inline-flex; gap: 44px; white-space: nowrap; animation: marquee 38s linear infinite; font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-    .ticker-track span::before { content: "◆"; color: var(--red); margin-right: 14px; font-size: 9px; vertical-align: 2px; }
+    .valores-track { display: inline-flex; gap: 44px; white-space: nowrap; animation: marquee 40s linear infinite; font-family: var(--titulo); font-weight: 500; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: rgba(249,247,238,.5); }
+    .valores-track span::before { content: "★"; color: var(--ouro); margin-right: 16px; font-size: 10px; vertical-align: 2px; }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
-    footer {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-      font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .06em;
-      border-top: 1px solid var(--line); padding-top: 20px;
+    /* ---------- Rodapé com onda dourada ---------- */
+    footer { position: relative; margin: 0 calc(-1 * clamp(16px, 4vw, 56px)); padding: 46px clamp(16px, 4vw, 56px) 22px; }
+    .onda { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 46px; display: block; }
+    .rodape {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 20px;
+      font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
     }
-    .coords { display: inline-flex; gap: 14px; }
+    .rodape .lema { font-family: var(--titulo); color: var(--ouro); letter-spacing: .3em; }
 
-    /* ---------- Entrance ---------- */
+    /* ---------- Entrada ---------- */
     .reveal { opacity: 0; transform: translateY(18px); animation: in .9s cubic-bezier(.2,.8,.2,1) forwards; }
-    .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; } .d4 { animation-delay: .6s; } .d5 { animation-delay: .8s; }
+    .d1 { animation-delay: .1s; } .d2 { animation-delay: .25s; } .d3 { animation-delay: .4s; } .d4 { animation-delay: .55s; } .d5 { animation-delay: .75s; }
     @keyframes in { to { opacity: 1; transform: none; } }
 
-    @media (max-width: 600px) {
-      .status .txt-long { display: none; }
-      .modules { grid-template-columns: 1fr; }
-      .brand small { display: none; }
-      .coords span:last-child { display: none; }
+    @media (max-width: 640px) {
+      header { padding-left: 64px; }
+      .marca .sigla { font-size: 26px; }
+      .marca .nome { display: none; }
+      .marca .div { display: none; }
+      .modulos { grid-template-columns: 1fr; }
+      .rodape { justify-content: center; text-align: center; }
+      .faixa { width: 80px; height: 80px; }
+      .faixa i { height: 8px; }
+      .faixa i:nth-child(1) { top: 4px; } .faixa i:nth-child(2) { top: 15px; } .faixa i:nth-child(3) { top: 26px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -211,47 +256,48 @@
   <div class="grid" aria-hidden="true"></div>
   <div class="glow g1" aria-hidden="true"></div>
   <div class="glow g2" aria-hidden="true"></div>
-  <div class="scan" aria-hidden="true"></div>
+  <div class="glow g3" aria-hidden="true"></div>
+  <div class="faixa" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <main>
     <header class="reveal d1">
-      <a class="brand" href="./" aria-label="Ordem dos Economistas de Angola">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs>
-            <linearGradient id="lg" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0" stop-color="#e3262f"/>
-              <stop offset="1" stop-color="#f5c542"/>
-            </linearGradient>
-          </defs>
-          <rect x="1" y="1" width="62" height="62" rx="16" fill="none" stroke="rgba(255,255,255,.18)"/>
-          <path d="M14 44 L26 30 L34 37 L50 18" stroke="url(#lg)" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="50" cy="18" r="4" fill="#f5c542"/>
-        </svg>
-        <span>Ordem dos Economistas<br>de Angola<small>OEA · LUANDA</small></span>
+      <a class="marca" href="./" aria-label="O.E.A. — Ordem dos Economistas de Angola">
+        <span class="sigla">O.E.A.</span>
+        <span class="div" aria-hidden="true"></span>
+        <span class="nome">ORDEM DOS ECONOMISTAS<br>DE ANGOLA</span>
       </a>
-      <div class="status"><i class="dot"></i><span class="txt-long">Sistema&nbsp;</span>em construção</div>
+      <div class="estado"><i class="dot"></i>Em construção</div>
     </header>
 
     <section class="hero">
-      <p class="kicker reveal d2"><span id="typed"></span><span class="caret">&nbsp;</span></p>
+      <div class="emblema reveal d2">
+        <span class="orbita o1" aria-hidden="true"></span>
+        <span class="orbita o2" aria-hidden="true"></span>
+        <img src="assets/img/oea-icone.webp" width="640" height="661" alt="Emblema da Ordem dos Economistas de Angola">
+      </div>
+
+      <p class="kicker reveal d2"><span id="typed">Em construção</span><span class="caret"></span></p>
+
       <h1 class="reveal d3">
         <span class="line">O futuro da economia</span>
-        <span class="line accent">angolana está a chegar.</span>
+        <span class="line accent">angolana está a chegar</span>
       </h1>
+      <div class="traco reveal d3" aria-hidden="true"></div>
+
       <p class="lead reveal d4">
         Estamos a construir uma nova plataforma digital para os economistas de Angola —
         mais moderna, mais próxima e preparada para o futuro. Volte em breve.
       </p>
 
-      <div class="panel reveal d5" role="group" aria-label="Estado da construção">
-        <div class="panel-head">
+      <div class="painel reveal d5" role="group" aria-label="Estado da construção">
+        <div class="painel-head">
           <span>Construção da plataforma</span>
           <b><span id="pct">0</span>%</b>
         </div>
-        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><i></i></div>
-        <ul class="modules">
-          <li class="done">Identidade digital</li>
-          <li class="wip">Portal institucional</li>
+        <div class="barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra"><i></i></div>
+        <ul class="modulos">
+          <li class="feito">Identidade de marca</li>
+          <li class="curso">Portal institucional</li>
           <li>Área do membro</li>
           <li>Notícias e publicações</li>
           <li>Eventos e formação</li>
@@ -259,17 +305,31 @@
         </ul>
       </div>
 
-      <div class="ticker reveal d5" aria-hidden="true">
-        <div class="ticker-track">
-          <span>Ética</span><span>Rigor</span><span>Conhecimento</span><span>Desenvolvimento</span><span>Transparência</span><span>Inovação</span><span>Angola</span>
-          <span>Ética</span><span>Rigor</span><span>Conhecimento</span><span>Desenvolvimento</span><span>Transparência</span><span>Inovação</span><span>Angola</span>
+      <div class="valores reveal d5" aria-hidden="true">
+        <div class="valores-track">
+          <span>Excelência</span><span>Ética</span><span>Rigor</span><span>Conhecimento</span><span>Transparência</span><span>Desenvolvimento</span><span>Angola</span>
+          <span>Excelência</span><span>Ética</span><span>Rigor</span><span>Conhecimento</span><span>Transparência</span><span>Desenvolvimento</span><span>Angola</span>
         </div>
       </div>
     </section>
 
     <footer class="reveal d5">
-      <span>© <span id="yr">2026</span> Ordem dos Economistas de Angola</span>
-      <span class="coords"><span>8.8390° S</span><span>13.2894° E</span><span id="clock">--:--:--</span></span>
+      <svg class="onda" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="ouro" x1="0" x2="1">
+            <stop offset="0" stop-color="#8a6a1e"/><stop offset=".35" stop-color="#F1D77A"/>
+            <stop offset=".65" stop-color="#D4AF37"/><stop offset="1" stop-color="#8a6a1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 30 C 360 6, 720 46, 1080 22 S 1440 18, 1440 18" fill="none" stroke="url(#ouro)" stroke-width="2"/>
+        <path d="M0 38 C 380 18, 760 50, 1120 30 S 1440 28, 1440 28" fill="none" stroke="#B51E26" stroke-opacity=".6" stroke-width="1"/>
+        <path d="M0 44 C 400 28, 800 54, 1160 38 S 1440 36, 1440 36" fill="none" stroke="#0F5A3C" stroke-opacity=".7" stroke-width="1"/>
+      </svg>
+      <div class="rodape">
+        <span>© <span id="ano">2026</span> Ordem dos Economistas de Angola</span>
+        <span class="lema">O.E.A.</span>
+        <span id="relogio">Luanda --:--:--</span>
+      </div>
     </footer>
   </main>
 
@@ -277,59 +337,59 @@
     (function () {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      /* Year + Luanda clock */
-      document.getElementById('yr').textContent = new Date().getFullYear();
-      const clock = document.getElementById('clock');
+      /* Ano + relógio de Luanda */
+      document.getElementById('ano').textContent = new Date().getFullYear();
+      const relogio = document.getElementById('relogio');
       const fmt = new Intl.DateTimeFormat('pt-AO', { timeZone: 'Africa/Luanda', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-      const tick = () => { clock.textContent = 'LUANDA ' + fmt.format(new Date()); };
+      const tick = () => { relogio.textContent = 'Luanda ' + fmt.format(new Date()); };
       tick(); setInterval(tick, 1000);
 
-      /* Progress */
-      const TARGET = 18;
-      const bar = document.getElementById('bar'), pct = document.getElementById('pct');
+      /* Progresso — ajustar este valor à medida que o projeto avança */
+      const PROGRESSO = 18;
+      const barra = document.getElementById('barra'), pct = document.getElementById('pct');
       setTimeout(() => {
-        bar.querySelector('i').style.width = TARGET + '%';
-        bar.setAttribute('aria-valuenow', TARGET);
-        if (reduce) { pct.textContent = TARGET; return; }
+        barra.querySelector('i').style.width = PROGRESSO + '%';
+        barra.setAttribute('aria-valuenow', PROGRESSO);
+        if (reduce) { pct.textContent = PROGRESSO; return; }
         const t0 = performance.now(), dur = 2400;
         (function step(t) {
           const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
-          pct.textContent = Math.round(TARGET * e);
+          pct.textContent = Math.round(PROGRESSO * e);
           if (k < 1) requestAnimationFrame(step);
         })(t0);
       }, 900);
 
-      /* Typed kicker */
-      const words = ['Em construção', 'Nova plataforma digital', 'Em breve'];
-      const el = document.getElementById('typed');
-      if (reduce) { el.textContent = words[0]; }
-      else {
-        let w = 0, i = 0, del = false;
-        (function type() {
+      /* Texto dinâmico */
+      if (!reduce) {
+        const words = ['Em construção', 'Nova plataforma digital', 'Em breve'];
+        const el = document.getElementById('typed');
+        let w = 0, i = words[0].length, del = true;
+        setTimeout(function type() {
           const word = words[w];
           el.textContent = word.slice(0, i);
           if (!del && i < word.length) { i++; setTimeout(type, 70); }
-          else if (!del) { del = true; setTimeout(type, 1800); }
+          else if (!del) { del = true; setTimeout(type, 2000); }
           else if (i > 0) { i--; setTimeout(type, 35); }
           else { del = false; w = (w + 1) % words.length; setTimeout(type, 300); }
-        })();
+        }, 2600);
       }
 
-      /* Particle network */
+      /* Rede de partículas douradas */
       const c = document.getElementById('net'), ctx = c.getContext('2d');
-      let W, H, pts = [], dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let W, H, pts = [];
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const mouse = { x: -9999, y: -9999 };
 
       function resize() {
         W = c.clientWidth; H = c.clientHeight;
         c.width = W * dpr; c.height = H * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        const n = Math.round(Math.min(110, (W * H) / 14000));
+        const n = Math.round(Math.min(100, (W * H) / 15000));
         pts = Array.from({ length: n }, () => ({
           x: Math.random() * W, y: Math.random() * H,
-          vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+          vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
           r: Math.random() * 1.6 + .4,
-          gold: Math.random() < .18
+          ouro: Math.random() < .35
         }));
       }
 
@@ -344,19 +404,19 @@
             if (p.y < 0 || p.y > H) p.vy *= -1;
           }
           for (let b = a + 1; b < pts.length; b++) {
-            const q = pts[b], dx = p.x - q.x, dy = p.y - q.y, d = Math.hypot(dx, dy);
+            const q = pts[b], d = Math.hypot(p.x - q.x, p.y - q.y);
             if (d < max) {
-              ctx.strokeStyle = 'rgba(255,255,255,' + (0.09 * (1 - d / max)) + ')';
+              ctx.strokeStyle = 'rgba(212,175,55,' + (0.14 * (1 - d / max)) + ')';
               ctx.lineWidth = 1;
               ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
             }
           }
           const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
           if (md < 180) {
-            ctx.strokeStyle = 'rgba(245,197,66,' + (0.35 * (1 - md / 180)) + ')';
+            ctx.strokeStyle = 'rgba(241,215,122,' + (0.4 * (1 - md / 180)) + ')';
             ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
           }
-          ctx.fillStyle = p.gold ? '#f5c542' : 'rgba(238,240,246,.7)';
+          ctx.fillStyle = p.ouro ? '#D4AF37' : 'rgba(249,247,238,.55)';
           ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
         }
         if (!reduce) requestAnimationFrame(draw);
